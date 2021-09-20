@@ -67,15 +67,29 @@ class War {
       }
     }
     */
-    //for (deadSaxon of this.saxonArmy) {if (deadSaxon.health <= 0) {this.saxonArmy.splice(deadSaxon)} };
-    return this.saxonArmy[Math.floor(this.saxonArmy.length * Math.random())].receiveDamage(this.vikingArmy[Math.floor(this.vikingArmy.length * Math.random())].strength);
+    //for (deadSaxon of this.saxonArmy) {if (deadSaxon.health <= 0) {this.saxonArmy.splice(deadSaxon)} };+
+
+    // Solution:
+    const randomViking = this.vikingArmy[Math.floor(this.vikingArmy.length * Math.random())];
+    const randomSaxon = this.saxonArmy[Math.floor(this.saxonArmy.length * Math.random())];
+    if (randomViking.strength > randomSaxon.health) this.saxonArmy.splice(randomSaxon);
+
+    return randomSaxon.receiveDamage(randomViking.strength);
+
+    //return this.saxonArmy[Math.floor(this.saxonArmy.length * Math.random())].receiveDamage(this.vikingArmy[Math.floor(this.vikingArmy.length * Math.random())].strength);
 
     
   }
 
 
   saxonAttack() {
-    return this.vikingArmy[Math.floor(this.vikingArmy.length * Math.random())].receiveDamage(this.saxonArmy[Math.floor(this.saxonArmy.length * Math.random())].strength);
+    const randomViking = this.vikingArmy[Math.floor(this.vikingArmy.length * Math.random())];
+    const randomSaxon = this.saxonArmy[Math.floor(this.saxonArmy.length * Math.random())];
+    if (randomSaxon.strength > randomViking.health) this.vikingArmy.splice(randomViking);
+
+    return randomViking.receiveDamage(randomSaxon.strength);
+
+    //return this.vikingArmy[Math.floor(this.vikingArmy.length * Math.random())].receiveDamage(this.saxonArmy[Math.floor(this.saxonArmy.length * Math.random())].strength);
   }
 
 }
